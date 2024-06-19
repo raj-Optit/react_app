@@ -1,0 +1,14 @@
+imagepullsecrets: "[]"
+namespace: demo
+image:
+  repository: bharathoptdocker/reactjs
+  tag: latest
+  
+service:
+  type: NodePort
+  port: 3001
+
+deployment:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
