@@ -13,7 +13,7 @@ spec:
         app: optitlab-react-dev
     spec:
       containers:
-      - name: optitlab-react-container
-        image: bharathoptdocker/reactjs:latest 
-        ports:
-          - containerPort: 80
+        - name: optitlab-react-container
+          image: bharathoptdocker/reactjs:latest 
+          ports:
+            - containerPort: 80
