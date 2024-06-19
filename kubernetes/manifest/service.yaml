@@ -1,12 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: optitlab-react-service
+  namespace: devopshelm02
+  name: optitlab-reactjs-dev
+  labels:
+    app: optitlab-reactjs-dev
 spec:
   selector:
-    app: optitlab-react-dev
+    app: optitlab-reactjs-dev
   ports:
-    - protocol: TCP
-      port: 8090
-      targetPort: 80
-  type: NodePort
+  - protocol: TCP
+    port: 8090
+    targetPort: 80
