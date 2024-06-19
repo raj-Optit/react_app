@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: optit-reactapp
+  namespace: {{ .Values.namespace }}
+spec:
+  replicas: {{ .Values.deployment.replicas }}
+  strategy:
+    type: {{ .Values.deployment.strategy.type }}
+  selector:
+    matchLabels:
+      app: optit-reactapp
+  template:
+    metadata:
+      labels:
+        app: optit-reactapp
+    spec:
+      {{- if .Values.imagepullsecrets }}
+      imagePullSecrets:
+        - name: {{ .Values.imagepullsecrets }}
+      {{- end }}
+      containers:
+        - name: optit-reactapp-container
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          ports:
+            - containerPort: 80
