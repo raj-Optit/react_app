@@ -1,5 +1,5 @@
-imagepullsecrets: "[]"
-namespace: demo
+imagepullsecrets: []
+namespace: devopshelm02
 image:
   repository: bharathoptdocker/reactjs
   tag: latest
