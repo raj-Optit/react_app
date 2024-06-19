@@ -1,19 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: optitlab-react-dev
+  namespace: devopshelm02
+  name: optitlab-reactjs-dev
+  labels:
+    app: optitlab-reactjs-dev
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      app: optitlab-react-dev
+      app: optitlab-reactjs-dev
   template:
     metadata:
       labels:
-        app: optitlab-react-dev
+        app: optitlab-reactjs-dev
     spec:
       containers:
-        - name: optitlab-react-container
-          image: bharathoptdocker/reactjs:latest 
-          ports:
-            - containerPort: 80
+      - name: optitlab-reactjs-dev
+        image: bharathoptdocker/reactjs:latest
+        ports:
+        - containerPort: 80
+          name: http
+        resources:
+          limits:
+            cpu: 100m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
