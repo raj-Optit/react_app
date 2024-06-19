@@ -2,9 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: optit-lab-react-deployment
-  namespace: optit-lab-react
 spec:
-  replicas: 3 
+  replicas: 1
   selector:
     matchLabels:
       app: optit-lab-react
@@ -15,6 +14,6 @@ spec:
     spec:
       containers:
       - name: optit-lab-react-container
-        image: bharathoptdocker/rectjs:latest 
+        image: bharathoptdocker/reactjs:latest 
         ports:
         - containerPort: 80
