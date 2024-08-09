@@ -13,13 +13,24 @@ on:
 
 jobs:
   build:
-    name: Build Node-Js application
+    name: Build and test the Node-Js application
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v4.0.3
+      with:
+        node-version: '14'
+        
+    - name: Build with npm
+      run: npm run build
+
+    - name: Unit-test with npm
+      run: npm test 
+      
     - name: Docker Login
       uses: docker/login-action@v3.3.0
       with:
