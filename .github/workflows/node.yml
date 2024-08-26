@@ -6,10 +6,10 @@ name: GitHub Action Node Js application
 on:
   push:
     branches:
-    - master
-    - release/*"
+    - masters
+    - releases/*"
   pull_request:
-    branches: [ master ]
+    branches: [ masters ]
 
 jobs:
   build:
