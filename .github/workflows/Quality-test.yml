@@ -1,5 +1,5 @@
 # This workflow will build a node-Js application, and cache/restore any dependencies to improve the workflow execution time
-# Create the secret DOCKER_HUB_USERNAME and DOCKER_HUB_USERNAME
+# Create the secret DOCKER_HUB_USERNAME, DOCKER_HUB_USERNAME, SONAR_PROJECT_KEY, SONAR_ORGANIZATION_KEY and SONAR_TOKEN
 
 name: GitHub Action Node Js application
 
