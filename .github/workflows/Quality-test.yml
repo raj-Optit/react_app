@@ -33,16 +33,14 @@ jobs:
     - name: Unit test with npm
       run: npm test 
       
-    - name: Docker Login
-      uses: docker/login-action@v3.3.0
-      with:
-          # Username used to log against the Docker registry
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-         # Password or personal access token used to log against the Docker registry
-        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-         # Log out from the Docker registry at the end of a job
-        #logout: false
-        
+    
+  SAST:
+    name: Static Application Security Testing (SAST) 
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@v3
+    
     - name: Scan with SonarCloud (SAST)
       uses: SonarSource/sonarcloud-github-action@v2.3.0
       env:
@@ -54,7 +52,24 @@ jobs:
             -Dsonar.organization=${{ secrets.SONAR_ORGANIZATION_KEY }}
             -Dsonar.host.url=https://sonarcloud.io
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
-            
+
+  Docker:
+    name: Docker Build and Image Scan
+    runs-on: ubuntu-latest
+    needs: [build, SAST]
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Docker Login
+      uses: docker/login-action@v3.3.0
+      with:
+          # Username used to log against the Docker registry
+        username: ${{ secrets.DOCKER_HUB_USERNAME }}
+         # Password or personal access token used to log against the Docker registry
+        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+         # Log out from the Docker registry at the end of a job
+        #logout: false
+        
     - name: Build and Tag Docker image
       run: docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/nodejs-application:${{ github.sha }} .
 
