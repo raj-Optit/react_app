@@ -1,5 +1,6 @@
 # This workflow will build a node-Js application, and cache/restore any dependencies to improve the workflow execution time
-# Create the secret DOCKER_HUB_USERNAME, DOCKER_HUB_USERNAME, SONAR_PROJECT_KEY, SONAR_ORGANIZATION_KEY and SONAR_TOKEN
+# Note: Update the branch name and Docker image name in the pipeline before triggering the job
+# Create the secret DOCKER_HUB_USERNAME, DOCKER_HUB_ACCESS_TOKEN, SONAR_PROJECT_KEY, SONAR_ORGANIZATION_KEY and SONAR_TOKEN
 
 name: GitHub Action Node Js application
 
@@ -53,7 +54,7 @@ jobs:
             -Dsonar.host.url=https://sonarcloud.io
             -Dsonar.login=${{ secrets.SONAR_TOKEN }}
 
-  Docker:
+  Containerization:
     name: Docker Build and Image Scan
     runs-on: ubuntu-latest
     needs: [build, SAST]
