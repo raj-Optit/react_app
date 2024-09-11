@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  namespace: devopshelm02
-  name: optitlab-reactjs-dev
+  namespace: dev
+  name: react-app
   labels:
-    app: optitlab-reactjs-dev
+    app: react-app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: optitlab-reactjs-dev
+      app: react-app
   template:
     metadata:
       labels:
-        app: optitlab-reactjs-dev
+        app: react-app
     spec:
       containers:
-      - name: optitlab-reactjs-dev
-        image: bharathoptdocker/reactjs:latest
+      - name: react-app
+        image: image-name
         ports:
         - containerPort: 80
           name: http
